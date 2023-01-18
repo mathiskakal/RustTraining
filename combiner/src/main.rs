@@ -48,3 +48,13 @@ fn get_smallest_dimension(dim_1: (u32, u32), dim_2: (u32, u32)) -> (u32, u32) {
   return if pix_1 < pix_2 { dim_1 } else { dim_2 };
 }
 
+fn standardise_size(image_1: DynamicImage, image_2: DynamicImage) -> (DynamicImage, DynamicImage) {
+  let (width, height) = get_smallest_dimension(image_1.dimensions(), image_2.dimensions());
+  println!("width: {}, height: {}\n", width, height);
+
+  if image_2.dimensions() == (width, height) {
+    (image_1.resize_exact(width, height, Triangle), image_2)
+  } else {
+      (image_1, image_2.resize_exact(width, height, Triangle))
+  }
+}
