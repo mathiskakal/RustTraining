@@ -1,0 +1,14 @@
+c:\Users\User\Documents\dev\rusttraining\RustTraining\combiner\target\debug\deps\tiff-a483903a5ef7aa10.rmeta: C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\lib.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\bytecast.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\mod.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\ifd.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\stream.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\mod.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\colortype.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\writer.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\error.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\tags.rs
+
+c:\Users\User\Documents\dev\rusttraining\RustTraining\combiner\target\debug\deps\tiff-a483903a5ef7aa10.d: C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\lib.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\bytecast.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\mod.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\ifd.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\stream.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\mod.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\colortype.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\writer.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\error.rs C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\tags.rs
+
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\lib.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\bytecast.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\mod.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\ifd.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\decoder\stream.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\mod.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\colortype.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\encoder\writer.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\error.rs:
+C:\Users\User\.cargo\registry\src\github.com-1ecc6299db9ec823\tiff-0.6.1\src\tags.rs:
