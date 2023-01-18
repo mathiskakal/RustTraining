@@ -1,7 +1,7 @@
 
 // importing the module 
 mod args;
-use std::{io::BufReader, fs::File};
+use std::{io::BufReader, fs::File, convert::TryInto, collections::hash_map::OccupiedEntry};
 use args::Args;
 use image::{io::Reader, ImageFormat, DynamicImage, GenericImageView, imageops::FilterType::Triangle};
 
@@ -31,7 +31,7 @@ struct FloatingImage {
 impl FloatingImage {
     fn new(width:u32, height:u32, name: String) -> Self {
       let buffer_capacity = height * width * 4;
-      let buffer = Vec::with_capacity(buffer_capacity);
+      let buffer = Vec::with_capacity(buffer_capacity.try_into().unwrap()); // try to do the conversion
       FloatingImage {
         width,
         height,
@@ -53,6 +53,7 @@ fn main() -> Result<(), ImageDataErrors> { // Handling errors
   }
 
   let (image_1, image_2) = standardise_size(image_1, image_2);
+  let output = FloatingImage::new(image_1.width(), image_1.height(), args.output);
 
   Ok(())
 }
