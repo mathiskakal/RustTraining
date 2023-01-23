@@ -4,6 +4,6 @@
 
 fn main() {
     fn call_me(){
-        println!("Hello There")
+        println!("Hello There");
     };
 }
