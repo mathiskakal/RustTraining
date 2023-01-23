@@ -1,5 +1,6 @@
 // Imports
-
+use std::io::Read;
+use std::str::FromStr;
 // save some time typing
 use std::{collections::HashMap, io::Read};
 
@@ -18,27 +19,62 @@ impl Todo {
     fn new() -> Result<Todo, std::io::Error> {
         let mut f = std::fs::OpenOptions::new()
             .write(true)
+            // will create if not already present
             .create(true)
             .read(true)
             .open("db.txt")?;
+
+        
+        // Create a new empty string and assigns it to a variable named content
         let mut content = String::new();
+
         // read to output in content
         f.read_to_string(&mut content)?;
+
         // creates a map from content and then
         let map: HashMap<String, bool> = content
             // converts string content into iterator of its lines
             .lines()
             // applies closure to each line, splitting each with a tab and collects resulting parts into a vector
             .map(|line| line.splitn(2, '\t').collect::<Vec<&str>>())
+            // then we transform it into a tuple for convenience
             // applies a closure to the vector, it takes the first element as key and second as value
-            .map(|v| (v[0], v[1]))*
+            .map(|v| (v[0], v[1]))
             // applies closure to each key-value tuple and converts key to a String and value to a bool
             .map(|(k, v)| (String::from(k), bool::from_str(v).unwrap()))
             // collects all the key-value tuple into the map variable.
             .collect();
+
         // creates a new instance of Todo with the map variable and wraps it in an Ok varia,t of the result type
         Ok(Todo { map })
     }
+
+
+    /*
+    // Alternative way of doing in a less functional style
+    fn new() -> Result<Todo, std::io::Error> {
+        let mut f = std::fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .read(true)
+            .open("db.txt")?;
+        let mut content = String::new();
+        f.read_to_string(&mut content)?;
+
+        let HashMap::new();
+
+        for entries in content.lines() {
+            //split and bind values
+            let mut values = entries.split('\t');
+            let key = values.next().expect("No Key");
+            let val = values.next().expect("No Value");
+            // insert them in hashmap
+            map.insert(String::from(key), bool::from_str(val).unwrap());
+        }
+        // Return Ok
+        Ok(Todo { map })
+    }
+    */
 
     //simple method to insert a new item into map pass true as a value
     fn insert (&mut self, key: String) {
@@ -56,6 +92,7 @@ impl Todo {
         }
         std::fs::write("db.txt", content)
     }
+    
 }
 
 // Main function
