@@ -1,7 +1,7 @@
 // Imports
 
 // save some time typing
-use std::collections::HashMap;
+use std::{collections::HashMap, io::Read};
 
 
 
@@ -12,6 +12,33 @@ struct Todo {
 }
 
 impl Todo {
+
+    // method to read content of the file and give back Todo populated with the previously stored values
+    // note that this is not a method since it does not take self as an argument.
+    fn new() -> Result<Todo, std::io::Error> {
+        let mut f = std::fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .read(true)
+            .open("db.txt")?;
+        let mut content = String::new();
+        // read to output in content
+        f.read_to_string(&mut content)?;
+        // creates a map from content and then
+        let map: HashMap<String, bool> = content
+            // converts string content into iterator of its lines
+            .lines()
+            // applies closure to each line, splitting each with a tab and collects resulting parts into a vector
+            .map(|line| line.splitn(2, '\t').collect::<Vec<&str>>())
+            // applies a closure to the vector, it takes the first element as key and second as value
+            .map(|v| (v[0], v[1]))*
+            // applies closure to each key-value tuple and converts key to a String and value to a bool
+            .map(|(k, v)| (String::from(k), bool::from_str(v).unwrap()))
+            // collects all the key-value tuple into the map variable.
+            .collect();
+        // creates a new instance of Todo with the map variable and wraps it in an Ok varia,t of the result type
+        Ok(Todo { map })
+    }
 
     //simple method to insert a new item into map pass true as a value
     fn insert (&mut self, key: String) {
