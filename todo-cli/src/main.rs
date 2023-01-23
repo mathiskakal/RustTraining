@@ -1,7 +1,7 @@
 // Imports
 
 // save some time typing
-use std::collections::HashMap
+use std::collections::HashMap;
 
 
 
@@ -47,6 +47,7 @@ fn main() {
     // handle if action == add
     if action == "add" {
         todo.insert(item);
+        //match the result returned from the save function and print a message on screen for both cases
         match todo.save() {
                 Ok(_) => println!("ToDo saved"),
                 Err(why) => println!("An error occured: {}", why),
