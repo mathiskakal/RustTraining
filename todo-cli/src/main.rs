@@ -1,5 +1,4 @@
 // Imports
-use std::io::Read;
 use std::str::FromStr;
 // save some time typing
 use std::{collections::HashMap, io::Read};
@@ -104,9 +103,7 @@ fn main() {
     println!("{:?},{:?}", action, item);
 
     // create a mutable instance of the todo struct
-    let mut todo = Todo {
-        map: HashMap::new(),
-    };
+    let mut todo = Todo::new().expect("Initialisation of DB failed...");
 
     // handle if action == add
     if action == "add" {
