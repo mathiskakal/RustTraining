@@ -1,18 +1,17 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn adder(x: i32, y: i32) -> i32 {
+    x + y
 }
 
-
-// This attribute tells cargo to run the following code only during testing
 #[cfg(test)]
-// This is where tests are written
 mod tests {
+    // this brings everything from the parent's scope into this scope
     use super::*;
 
-    // This attribute tells cargo that below is a test
     #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    fn it_adds() {
+        let sum = adder(4, 5);
+        // in rust there are no conventions as to which left or right is expected and given
+        assert_eq!(sum, 9);
     }
+
 }
