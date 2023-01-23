@@ -13,8 +13,28 @@ struct Todo {
 
 impl Todo {
 
-    // method to read content of the file and give back Todo populated with the previously stored values
+    // 3/3 : BONUS: updated new() function to handle JSON instead of txt IO
+    fn new() -> Result<Todo, std::io::Error> {
+        //open db.json
+        let f = std::fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .read(true)
+            .open("db.json")?;
+        // serialize JSON as HashMap
+        match serde_json::from_reader(f) {
+            Ok(map) => Ok(Todo { map }),
+            // Err(e) if e.is_eof() is a match guard that allows us to detect if serde returns a premature EOF error
+            Err(e) if e.is_eof() => Ok(Todo {
+                map: HashMap::new(),
+            }),
+            Err(e) => panic!("An error occured: {}", e),
+        }
+    }
+
+    // 1/3 : function to read content of the file and give back Todo populated with the previously stored values
     // note that this is not a method since it does not take self as an argument.
+    /*
     fn new() -> Result<Todo, std::io::Error> {
         let mut f = std::fs::OpenOptions::new()
             .write(true)
@@ -47,8 +67,9 @@ impl Todo {
         // creates a new instance of Todo with the map variable and wraps it in an Ok varia,t of the result type
         Ok(Todo { map })
     }
+    */
 
-    // Alternative way of doing in a less functional style
+    // 2/3 : Alternative way of doing in a less functional style
     /*
     fn new() -> Result<Todo, std::io::Error> {
         let mut f = std::fs::OpenOptions::new()
@@ -79,9 +100,10 @@ impl Todo {
         self.map.insert(key, true);
     }
 
-    // simple method to store on disk
+    // 1/2 : simple method to store on disk
     // important to notice that this time the method doesn't take ownership
     // of self, in order to prevent us from updating the map (since it would no longer be accessible)
+    /*
     fn save(self) -> Result<(), std::io::Error> {
         let mut content = String::new();
         for (k, v) in self.map {
@@ -90,7 +112,24 @@ impl Todo {
         }
         std::fs::write("db.txt", content)
     }
+    */
     
+    // 2/2 : update of the save method 
+    // This time we return a Box containing a Rust generic error implementation. A box is a pointer to an allocation in memory.
+    // since we may return either a file system error when opening the file, or a serde error when converting it, we don't really 
+    // know which of the two our function may return. Therefore, we return a pointer to the possible error instead of the error itself
+    // so that the caller will handle them
+    fn save(self) -> Result<(), Box<dyn std::error::Error>> {
+        // open db.Json
+        let f = std::fs::OpenOptions::new()
+            .write(true)
+            .create(true)
+            .open("db.json")?;
+        // write to file with serde
+        serde_json::to_writer_pretty(f, &self.map)?;
+        Ok(())
+    }
+
     // method to mark a task as done
     fn complete(&mut self, key: &String) -> Option<()> {
         // The method will return the result of a match expression, which is either an empty Some() or None
