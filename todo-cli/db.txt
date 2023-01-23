@@ -1,1 +1,3 @@
 code rust	true
+code cpp	true
+code python	true

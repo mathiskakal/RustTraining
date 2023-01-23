@@ -48,9 +48,8 @@ impl Todo {
         Ok(Todo { map })
     }
 
-
-    /*
     // Alternative way of doing in a less functional style
+    /*
     fn new() -> Result<Todo, std::io::Error> {
         let mut f = std::fs::OpenOptions::new()
             .write(true)
@@ -92,6 +91,16 @@ impl Todo {
         std::fs::write("db.txt", content)
     }
     
+    // method to mark a task as done
+    fn complete(&mut self, key: &String) -> Option<()> {
+        // The method will return the result of a match expression, which is either an empty Some() or None
+        // self.map.get_mu will give us a mutable reference to the value of the key or None if the value is
+        // not present in collection
+        match self.map.get_mut(key) {
+            Some(v) => Some(*v = false),
+            None => None,
+        }
+    }
 }
 
 // Main function
@@ -112,6 +121,21 @@ fn main() {
         match todo.save() {
                 Ok(_) => println!("ToDo saved"),
                 Err(why) => println!("An error occured: {}", why),
+        }
+    // handle if action == complete
+    } else if action == "complete"  {
+        // we match the Option returned by the complete method
+        // we passed item as a reference with &item to the complete method so that the value is still 
+        // owned by this function. This means we can use it for our print macro on the following line. 
+        match todo.complete(&item) {
+            // if the case is none we print a warning for the user for a better experience
+            None => println!("'{}' is not present in the list", item),
+            // if we detect that Some value has returned, we call todo.save to store the change
+            // permanently into our file.
+            Some(_) => match todo.save() {
+                Ok(_) => println!("todo saved"),
+                Err(why) => println!("An error occured: {}", why),
+            },
         }
     }
 }
