@@ -1,0 +1,1 @@
+C:\Users\User\Documents\dev\rusttraining\RustTraining\combiner\target\debug\combiner.exe: C:\Users\User\Documents\dev\rusttraining\RustTraining\combiner\src\args.rs C:\Users\User\Documents\dev\rusttraining\RustTraining\combiner\src\main.rs
